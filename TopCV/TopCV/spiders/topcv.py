@@ -46,14 +46,17 @@ class TopcvSpider(scrapy.Spider):
     def it_parse_2(self, response):
         Web = 'TopCV'
         Img = response.css('.company-logo img::attr(src)').get()
-        for Nganh_demo in response.css('.box-category'):
-            try:
-                if 'Danh mục Nghề liên quan' in "".join(Nganh_demo.css('.box-title ::text').extract()):
-                    try : Nganh = Nganh_demo.css('.box-category-tags a::text').get() 
-                    except : Nganh = "Không có"
-                    break
-            except:
-                print("lỗi")
+        try:
+            for Nganh_demo in response.css('.box-category'):
+                try:
+                    if 'Danh mục Nghề liên quan' in "".join(Nganh_demo.css('.box-title ::text').extract()):
+                        try : Nganh = Nganh_demo.css('.box-category-tags a::text').get() 
+                        except : Nganh = "Không có"
+                        break
+                except:
+                    Nganh = "Không có"
+        except:
+            Nganh = "Không có"
         Link = response.url
         TenCV = "".join(response.css('h1.job-detail__info--title ::text').extract())
         CongTy = "".join(response.css('.company-name-label ::text').extract())

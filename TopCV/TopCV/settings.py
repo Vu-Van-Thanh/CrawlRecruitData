@@ -51,15 +51,16 @@ ROBOTSTXT_OBEY = False
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-   "TopCV.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
-   "TopCV.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware": 300
+   # "TopCV.middlewares.ScrapeOpsFakeUserAgentMiddleware": 400,
+   # "TopCV.middlewares.ScrapeOpsFakeBrowserHeaderAgentMiddleware": 300,
+   'scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeOpsScrapyProxySdk': 725,
 }
-DOWNLOAD_HANDLERS = {
-    'http': ('scrapy_fingerprint.fingerprint_download_handler.'
-             'FingerprintDownloadHandler'),
-    'https': ('scrapy_fingerprint.fingerprint_download_handler.'
-              'FingerprintDownloadHandler'),
-}
+# DOWNLOAD_HANDLERS = {
+#     'http': ('scrapy_fingerprint.fingerprint_download_handler.'
+#              'FingerprintDownloadHandler'),
+#     'https': ('scrapy_fingerprint.fingerprint_download_handler.'
+#               'FingerprintDownloadHandler'),
+# }
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html
 #EXTENSIONS = {
@@ -116,6 +117,10 @@ CONCURRENT_REQUESTS = 6
 CONCURRENT_REQUESTS_PER_DOMAIN = 2
 
 RETRY_TIMES = 5
+
+SCRAPEOPS_API_KEY = 'c16ba23b-fcd7-4f16-b2fa-88d8fbdc13e0'
+SCRAPEOPS_PROXY_ENABLED = True
+
 
 # ROTATING_PROXY_LIST_PATH = 'proxies.txt' # Path that this library uses to store list of proxies
 # NUMBER_OF_PROXIES_TO_FETCH = 10 # Controls how many proxies to use
