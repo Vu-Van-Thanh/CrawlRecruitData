@@ -94,22 +94,24 @@ class TopcvSpider(scrapy.Spider):
                 YeuCau = " ".join(text.strip() for text in item.css('::text').extract()) or "Không có"
             if "quyền lợi" in title:
                 PhucLoi = " ".join(text.strip() for text in item.css('::text').extract()) or "Không có"
-
-        item = IT_Item()
-        item['Web'] = Web
-        item['Nganh'] = Nganh
-        item['Link'] = Link
-        item['TenCV'] = TenCV
-        item['CongTy'] = CongTy
-        item['TinhThanh'] = TinhThanh
-        item['Luong'] = Luong
-        item['LoaiHinh'] = LoaiHinh
-        item['KinhNghiem'] = KinhNghiem
-        item['CapBac'] = CapBac
-        item['YeuCau'] = YeuCau
-        item['MoTa'] = MoTa
-        item['PhucLoi'] = PhucLoi
-        item['HanNopCV'] = HanNopCV
-        item['SoLuong'] = SoLuong
-        item['Img'] = Img
-        yield item
+        try:
+            item = IT_Item()
+            item['Web'] = Web
+            item['Nganh'] = Nganh
+            item['Link'] = Link
+            item['TenCV'] = TenCV
+            item['CongTy'] = CongTy
+            item['TinhThanh'] = TinhThanh
+            item['Luong'] = Luong
+            item['LoaiHinh'] = LoaiHinh
+            item['KinhNghiem'] = KinhNghiem
+            item['CapBac'] = CapBac
+            item['YeuCau'] = YeuCau
+            item['MoTa'] = MoTa
+            item['PhucLoi'] = PhucLoi
+            item['HanNopCV'] = HanNopCV
+            item['SoLuong'] = SoLuong
+            item['Img'] = Img
+            yield item
+        except:
+            return
